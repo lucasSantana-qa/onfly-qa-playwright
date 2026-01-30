@@ -1,0 +1,188 @@
+{
+	"id": "731eb3e6-4b1b-4d53-828b-dc217d7497e5",
+	"name": "User Tests",
+	"timestamp": "2026-01-29T20:09:43.754Z",
+	"collection_id": "20493585-637b4bf2-9a38-4621-b186-3d769eb815e1",
+	"folder_id": 0,
+	"environment_id": "20493585-1524419c-d57f-4451-be1e-788c662178bd",
+	"totalPass": 10,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2026-01-29T20:09:40.709Z",
+	"totalFail": 1,
+	"results": [
+		{
+			"id": "8d7f1594-45bb-430c-bec9-e30fd18aa887",
+			"name": "createUser",
+			"url": "https://gorest.co.in/public/v2/users",
+			"time": 1170,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Response time should be below 1000": false,
+				"Status code should be 201": true,
+				"Response should have correct body": true
+			},
+			"testPassFailCounts": {
+				"Response time should be below 1000": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Status code should be 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should have correct body": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				1170
+			],
+			"allTests": [
+				{
+					"Response time should be below 1000": false,
+					"Status code should be 201": true,
+					"Response should have correct body": true
+				}
+			]
+		},
+		{
+			"id": "6addfdce-5c5d-42a3-a3fe-6e0df030b5aa",
+			"name": "getUser",
+			"url": "https://gorest.co.in/public/v2/users/8350719",
+			"time": 419,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response time should be below 1000": true,
+				"Status code should be 200": true,
+				"Response should have correct body": true
+			},
+			"testPassFailCounts": {
+				"Response time should be below 1000": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code should be 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should have correct body": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				419
+			],
+			"allTests": [
+				{
+					"Response time should be below 1000": true,
+					"Status code should be 200": true,
+					"Response should have correct body": true
+				}
+			]
+		},
+		{
+			"id": "6a4b2fe5-b2d0-4e32-89a0-7effb21acbef",
+			"name": "updateUser",
+			"url": "https://gorest.co.in/public/v2/users/8350719",
+			"time": 440,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response time should be below 1000": true,
+				"Status code should be 200": true,
+				"Response should have correct body": true
+			},
+			"testPassFailCounts": {
+				"Response time should be below 1000": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code should be 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should have correct body": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				440
+			],
+			"allTests": [
+				{
+					"Response time should be below 1000": true,
+					"Status code should be 200": true,
+					"Response should have correct body": true
+				}
+			]
+		},
+		{
+			"id": "b91d380b-aea0-4091-bb6e-232b58ae456c",
+			"name": "deleteUser",
+			"url": "https://gorest.co.in/public/v2/users/8350719",
+			"time": 452,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Response time should be below 1000": true,
+				"Status code should be 204": true
+			},
+			"testPassFailCounts": {
+				"Response time should be below 1000": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code should be 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				452
+			],
+			"allTests": [
+				{
+					"Response time should be below 1000": true,
+					"Status code should be 204": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 2481,
+	"collection": {
+		"requests": [
+			{
+				"id": "8d7f1594-45bb-430c-bec9-e30fd18aa887",
+				"method": "POST"
+			},
+			{
+				"id": "6addfdce-5c5d-42a3-a3fe-6e0df030b5aa",
+				"method": "GET"
+			},
+			{
+				"id": "6a4b2fe5-b2d0-4e32-89a0-7effb21acbef",
+				"method": "PUT"
+			},
+			{
+				"id": "b91d380b-aea0-4091-bb6e-232b58ae456c",
+				"method": "DELETE"
+			}
+		]
+	}
+}

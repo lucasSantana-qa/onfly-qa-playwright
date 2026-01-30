@@ -1,0 +1,303 @@
+{
+  "info": {
+    "_postman_id": "637b4bf2-9a38-4621-b186-3d769eb815e1",
+    "name": "User Tests",
+    "description": "Antes de executar a collection, gerar um token na api pública e preencher o campo 'token' no environment 'hml' com ela.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "20493585",
+    "_collection_link": "https://go.postman.co/collection/20493585-637b4bf2-9a38-4621-b186-3d769eb815e1?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "createUser",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code should be 201\", () => {\r",
+              "    pm.response.to.have.status(201);\r",
+              "})\r",
+              "\r",
+              "const id = pm.response.json().id;\r",
+              "\r",
+              "pm.environment.set(\"id\", id);\r",
+              "\r",
+              "pm.test(\"Response should have correct body\", () => {\r",
+              "    const body = pm.response.json();\r",
+              "    pm.expect(body).to.have.property(\"id\").and.not.null\r",
+              "    pm.expect(body).to.have.property(\"name\").and.equal(pm.collectionVariables.get(\"name\"))\r",
+              "    pm.expect(body).to.have.property(\"email\").and.equal(pm.collectionVariables.get(\"email\"))\r",
+              "    pm.expect(body).to.have.property(\"gender\").and.equal(pm.collectionVariables.get(\"gender\"))\r",
+              "    pm.expect(body).to.have.property(\"status\").and.equal(pm.collectionVariables.get(\"status\"))\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"{{name}}\",\r\n    \"gender\": \"{{gender}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"status\": \"{{status}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/users",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getUser",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code should be 200\", () => {\r",
+              "    pm.response.to.have.status(200);\r",
+              "})\r",
+              "\r",
+              "pm.test(\"Response should have correct body\", () => {\r",
+              "    const body = pm.response.json()\r",
+              "\r",
+              "    pm.expect(body).to.have.property(\"id\").and.equal(pm.environment.get(\"id\"))\r",
+              "    pm.expect(body).to.have.property(\"name\").and.equal(pm.collectionVariables.get(\"name\"))\r",
+              "    pm.expect(body).to.have.property(\"email\").and.equal(pm.collectionVariables.get(\"email\"))\r",
+              "    pm.expect(body).to.have.property(\"gender\").and.equal(pm.collectionVariables.get(\"gender\"))\r",
+              "    pm.expect(body).to.have.property(\"status\").and.equal(pm.collectionVariables.get(\"status\"))\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/users/{{id}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "users",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "updateUser",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code should be 200\", () => {\r",
+              "    pm.response.to.have.status(200);\r",
+              "})\r",
+              "\r",
+              "pm.test(\"Response should have correct body\", () => {\r",
+              "    const body = pm.response.json();\r",
+              "\r",
+              "    pm.expect(body).to.have.property(\"id\").and.equal(pm.environment.get(\"id\"))\r",
+              "    pm.expect(body).to.have.property(\"name\").and.equal(\"Nome alterado\")\r",
+              "    pm.expect(body).to.have.property(\"email\").and.equal(pm.collectionVariables.get(\"email\"))\r",
+              "    pm.expect(body).to.have.property(\"gender\").and.equal(pm.collectionVariables.get(\"gender\"))\r",
+              "    pm.expect(body).to.have.property(\"status\").and.equal(pm.collectionVariables.get(\"status\"))\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Nome alterado\",\r\n    \"email\": \"{{email}}\",\r\n    \"status\": \"{{status}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/users/{{id}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "users",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "deleteUser",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code should be 204\", () => {\r",
+              "    pm.response.to.have.status(204);\r",
+              "})\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/users/{{id}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "users",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "requests": {},
+        "exec": [
+          "pm.test('Response time should be below 1000', () => {\r",
+          "    pm.expect(pm.response.responseTime).to.be.below(1000)\r",
+          "})"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "name",
+      "value": "Teste Teste"
+    },
+    {
+      "key": "email",
+      "value": "testeteste@gmail.com"
+    },
+    {
+      "key": "gender",
+      "value": "male"
+    },
+    {
+      "key": "status",
+      "value": "active"
+    }
+  ]
+}

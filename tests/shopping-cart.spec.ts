@@ -6,6 +6,7 @@ import { MyAccountPage } from "./support/my-account.page";
 import { HomePage } from "./support/home.page";
 import { ProductDetailsPage } from "./support/product-details.page";
 import { CartPage } from "./support/cart.page";
+import * as Helpers from '././helpers/helpers'
 
 const productName = 'Pliers'
 
@@ -33,9 +34,7 @@ test.describe('Testes carrinho', { tag: '@cart' }, () => {
     await homePage.inputSearchProduct.waitFor({state: "visible"})
   })
   test('Deve adicionar produto no carrinho com sucesso', async () => {
-    await homePage.searchProduct(productName)
-    await homePage.selectProduct(productName)
-    await productDetailsPage.addToCart()
+    await Helpers.addProductToCart(homePage, productDetailsPage, productName)
     await expect(productDetailsPage.cartCount).toHaveText('1')
   })
 
@@ -50,9 +49,7 @@ test.describe('Testes carrinho', { tag: '@cart' }, () => {
   })
 
   test('Deve remover produto do carrinho com sucesso', async () => {
-    await homePage.searchProduct(productName)
-    await homePage.selectProduct(productName)
-    await productDetailsPage.addToCart()
+    await Helpers.addProductToCart(homePage, productDetailsPage, productName)
     await homePage.goToCart()
     await cartPage.removeProductFromCart()
     await expect(cartPage.cartProductTable).not.toBeVisible()

@@ -42,6 +42,7 @@ npx playwright show-report
 * Variáveis compartilhadas configuradas para exportação
 * Antes de executar o teste no postman, necessário gerar um token da api pública utilizada
 e preencher o campo 'token' da environment 'hml'
+* Json com resultados do teste na pasta `/docs/postman/results`
 
 ---
 
